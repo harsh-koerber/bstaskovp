@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: bstasksovp
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: DEW
+          url: http://dewbtpemea:8000
+          client: '100'
+        app:
+          name: ZHRZ_BSTASKSOVP
+          description: Balancing Slot Tasks
+          package: zhrz_ewm_kpi
+          transport: DEWK927185
+        exclude:
+          - /test/

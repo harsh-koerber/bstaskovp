@@ -1,0 +1,294 @@
+{
+  "_version": "1.37.0",
+  "sap.app": {
+    "id": "bstasksovp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:ovp",
+      "version": "1.18.3",
+      "toolsId": "f92c89bb-5f42-4c39-93f5-98a21c4816cf"
+    },
+    "dataSources": {
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZHRZ_SB_BALSLOT_KPIS/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZHRZ_SB_BALSLOT_KPIS_VAN",
+            "annotation"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZHRZ_SB_BALSLOT_KPIS_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZHRZ_SB_BALSLOT_KPIS_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZHRZ_SB_BALSLOT_KPIS_VAN.xml"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "ZHRZ_BSTASKS-Monitor": {
+          "semanticObject": "ZHRZ_BSTASKS",
+          "action": "Monitor",
+          "title": "{{ZHRZ_BSTASKS-Monitor.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.96.6",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.f": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ovp": {},
+        "sap.ui.rta": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "bstasksovp.i18n.i18n"
+        }
+      },
+      "mainModel": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataUrlParams": {
+            "sap-value-list": "none"
+          }
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [],
+      "targets": {}
+    }
+  },
+  "sap.ovp": {
+    "globalFilterModel": "mainModel",
+    "globalFilterEntitySet": "ZHRZ_DD_I_BAL_CARTON_P",
+    "containerLayout": "resizable",
+    "enableLiveFilter": false,
+    "considerAnalyticalParameters": false,
+    "cards": {
+      "CARTON_P": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#CARTON_P",
+          "entitySet": "ZHRZ_DD_I_BAL_CARTON_P",
+          "title": "Carton Processing",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#CARTON_P"
+        }
+      },
+      "PACK_COM": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PACK_COM",
+          "entitySet": "ZHRZ_DD_I_BAL_PACK_COM",
+          "title": "Combined Packing",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PACK_COM"
+        }
+      },
+      "PACK_STD": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PACK_STD",
+          "entitySet": "ZHRZ_DD_I_BAL_PACK_STD",
+          "title": "Standard Packing",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PACK_STD"
+        }
+      },
+      "PICK": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PICK",
+          "entitySet": "ZHRZ_DD_I_BAL_PICK",
+          "title": "Picking",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PICK"
+        }
+      },
+      "STAGING": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#STAGING",
+          "entitySet": "ZHRZ_DD_I_BAL_STAGING",
+          "title": "Staging",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#STAGING"
+        }
+      },
+      "TRANS_FL": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TRANS_FL",
+          "entitySet": "ZHRZ_DD_I_BAL_TRANS_FL",
+          "title": "Combined Transport Floor",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#TRANS_FL"
+        }
+      },
+      "VAS_BATT": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#VAS_BATT",
+          "entitySet": "ZHRZ_DD_I_BAL_VAS_BATT",
+          "title": "Value Added Service for Batteries",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#VAS_BATT"
+        }
+      },
+      "VAS_PALL": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#VAS_PALL",
+          "entitySet": "ZHRZ_DD_I_BAL_VAS_PALL",
+          "title": "Value Added Service for Pallets",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#VAS_PALL"
+        }
+      },
+      "VAS_TOTE": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#VAS_TOTE",
+          "entitySet": "ZHRZ_DD_I_BAL_VAS_TOTE",
+          "title": "Value Added Service for Totes",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#VAS_TOTE"
+        }
+      },
+      "BAL_HEAD_PER": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#BAL_HEADER_PER",
+          "entitySet": "ZHRZ_DD_I_BAL_HEADER_PERCENT",
+          "title": "Balancing visualisation",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#BAL_HEADER_PER"
+        }
+      },
+      "BAL_EXP": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#BAL_EXP",
+          "entitySet": "ZHRZ_DD_I_BAL_HEAD_EXP",
+          "title": "Export Overview",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#BAL_EXP"
+        }
+      },
+      "BAL_BACKLOG": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#BAL_BACKLOG",
+          "entitySet": "ZHRZ_DD_I_BAL_HEAD_BACKLOG",
+          "title": "Backlog / Today / Future",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#BAL_BACKLOG"
+        }
+      },
+      "BAL_WORKLOAD": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#BAL_WORKLOAD",
+          "entitySet": "ZHRZ_DD_I_BAL_HEAD_WORKLOAD",
+          "title": "Workload",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#BAL_WORKLOAD"
+        }
+      },
+      "BAL_HEADER": {
+        "template": "sap.ovp.cards.charts.analytical",
+        "model": "mainModel",
+        "settings": {
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ChartBalHeader",
+          "entitySet": "ZHRZ_DD_I_BAL_HEADER",
+          "title": "Balancing visualisation header",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PVBalHeader"
+        }
+      }
+    },
+    "chartSettings": {},
+    "bHeaderExpanded": false,
+    "dataLoadSettings": {
+      "loadDataOnAppLaunch": "always"
+    },
+    "refreshIntervalInMinutes": 1
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "analytical"
+  }
+}
